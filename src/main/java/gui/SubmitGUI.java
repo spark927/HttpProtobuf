@@ -74,7 +74,7 @@ public class SubmitGUI extends JFrame{
         this.add(jp4);
 
         this.setSize(500, 300);
-        this.setTitle("登录");
+        this.setTitle("测试工具");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         
