@@ -13,7 +13,7 @@ import proto.Login.login;
 public class Demo 
 {
 	
-	public static void SetLed(String type, String url, JSONObject jsonObject) throws Exception{
+	public static void Login(String type, String url, JSONObject jsonObject) throws Exception{
 		
 		//格式为：{"username":"tom","password":"11111"}
         String username = jsonObject.getString("username");
@@ -31,7 +31,6 @@ public class Demo
 		
 		InputStream is = HttpConnect.httpPost(type, url, data);
 		
-
 	}
 
 	static HostnameVerifier hv = new HostnameVerifier() {  
