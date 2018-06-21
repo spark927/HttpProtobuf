@@ -86,7 +86,7 @@ public class SubmitGUI extends JFrame{
 		        String p3 = jtf3.getText();
 		        JSONObject jsStr = JSONObject.parseObject(p3);  
 		        try {
-					Demo.SetLed(p1, p2, jsStr);
+					Demo.Login(p1, p2, jsStr);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
