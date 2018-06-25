@@ -13,7 +13,7 @@ import proto.Login.login;
 public class Demo 
 {
 	
-	public static void Login(String type, String url, JSONObject jsonObject) throws Exception{
+	public static String Login(String type, String url, JSONObject jsonObject) throws Exception{
 		
 		//格式为：{"username":"tom","password":"11111"}
         String username = jsonObject.getString("username");
@@ -29,7 +29,9 @@ public class Demo
 		TrustHttp.trustAllHttpsCertificates();  
 		HttpsURLConnection.setDefaultHostnameVerifier(hv); 
 		
-		InputStream is = HttpConnect.httpPost(type, url, data);
+		String code = HttpConnect.httpPost(type, url, data);
+		
+		return code;
 		
 	}
 

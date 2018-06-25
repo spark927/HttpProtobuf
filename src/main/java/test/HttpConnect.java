@@ -12,10 +12,11 @@ import java.net.URL;
  */
 public class HttpConnect {
 	
-	public static InputStream httpPost(String type, String url, byte[] PostData) {
+	public static String httpPost(String type, String url, byte[] PostData) {
         URL u = null;
         HttpURLConnection con = null;
         InputStream inputStream = null;
+        String resultCode = null;
 
         try {
             u = new URL(url);
@@ -31,12 +32,14 @@ public class HttpConnect {
             outStream.flush();
             outStream.close();
 
-            inputStream = con.getInputStream();
+            int code = con.getResponseCode();
+            resultCode = Integer.toString(code);
+            
             System.out.println(con.getResponseCode());
         } catch (Exception e) {
             e.printStackTrace();
         }
-		return inputStream; 
+		return resultCode; 
     }
 
 }
