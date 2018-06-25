@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.alibaba.fastjson.JSONObject;
@@ -22,10 +23,11 @@ public class SubmitGUI extends JFrame{
 
 
 	// 定义组件
-    JPanel jp1, jp2, jp3, jp4;
-    JLabel jlb1, jlb2, jlb3;
-    JButton jb1, jb2;
-    JTextField jtf1, jtf2, jtf3;
+    JPanel jp1, jp2, jp3, jp4, jp5;
+    JLabel type, url, data, result;
+    JButton submit, cancel;
+    JTextField type_text, url_text, data_text;
+	JTextArea result_text;
 
 
     public static void main(String[] args) {
@@ -41,61 +43,67 @@ public class SubmitGUI extends JFrame{
         jp2 = new JPanel();
         jp3 = new JPanel();
         jp4 = new JPanel();
+        jp5 = new JPanel();
 
-        jlb1 = new JLabel("请求类型");
-        jlb2 = new JLabel("URL");
-        jlb3 = new JLabel("参数");
+        type = new JLabel("请求类型");
+        url = new JLabel("URL");
+        data = new JLabel("参数");
+        result = new JLabel("返回值");
 
-        jb1 = new JButton("提交");
-        jb2 = new JButton("取消");
+        submit = new JButton("提交");
+        cancel = new JButton("取消");
 
-        jtf1 = new JTextField(10);
-        jtf2 = new JTextField(10);
-        jtf3 = new JTextField(10);
-        this.setLayout(new GridLayout(4, 1));
+        type_text = new JTextField(10);
+        url_text = new JTextField(10);
+        data_text = new JTextField(10);
+        result_text = new JTextArea(2, 10);
+        this.setLayout(new GridLayout(5, 1));
 
         // 加入各个组件
-        jp1.add(jlb1);
-        jp1.add(jtf1);
+        jp1.add(type);
+        jp1.add(type_text);
 
-        jp2.add(jlb2);
-        jp2.add(jtf2);
+        jp2.add(url);
+        jp2.add(url_text);
         
-        jp3.add(jlb3);
-        jp3.add(jtf3);
+        jp3.add(data);
+        jp3.add(data_text);
+        
+        jp4.add(result);
+        jp4.add(result_text);
 
-        jp4.add(jb1);
-        jp4.add(jb2);
+        jp5.add(submit);
+        jp5.add(cancel);
 
         // 加入到JFrame
         this.add(jp1);
         this.add(jp2);
         this.add(jp3);
         this.add(jp4);
+        this.add(jp5);
 
         this.setSize(500, 300);
         this.setTitle("测试工具");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         
-        jb1.addActionListener(new ActionListener() {
+        submit.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				String p1 = jtf1.getText();
-		        String p2 = jtf2.getText();
-		        String p3 = jtf3.getText();
+				String p1 = type_text.getText();
+		        String p2 = url_text.getText();
+		        String p3 = data_text.getText();
 		        JSONObject jsStr = JSONObject.parseObject(p3);  
 		        try {
-					Demo.Login(p1, p2, jsStr);
+					String code = Demo.Login(p1, p2, jsStr);
+					result_text.setText(code);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 		        
-				
 			}
 		});
-        
         
     }
 
